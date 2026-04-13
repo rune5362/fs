@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Windows XP Style Resume</title>
+    <!-- XP 스타일 라이브러리 로드 -->
+    <link rel="stylesheet" href="https://unpkg.com">
+    <style>
+        body {
+            background-color: #008080; /* 클래식 윈도우 배경색 */
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .window {
+            width: 800px;
+        }
+
+        .window-body {
+            padding: 20px;
+        }
+
+        .profile-section {
+            margin-bottom: 20px;
+        }
+
+        fieldset {
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* 리스트 스타일 */
+        .item-row {
+            margin-bottom: 8px;
+        }
+
+        details {
+            background: #fff;
+            box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+            padding: 2px;
+        }
+
+        summary {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            background: #ece9d8;
+        }
+
+        summary:hover {
+            background: #316ac5;
+            color: white;
+        }
+
+        .context {
+            padding: 10px;
+            border-top: 1px solid #808080;
+            background: #ffffff;
+            line-height: 1.5;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .global-control {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="window">
+    <div class="title-bar">
+        <div class="title-bar-text">Resume.exe - My Professional Profile</div>
+        <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+        </div>
+    </div>
+
+    <div class="window-body">
+        <!-- 최우측 상단 전체 제어 버튼 -->
+        <div class="global-control">
+            <button id="toggleAllBtn">전체 펼치기 / 접기</button>
+        </div>
+
+        <!-- 기본 프로필 -->
+        <fieldset>
+            <legend>기본 프로필</legend>
+            <div class="profile-section">
+                <p><strong>성명:</strong> 홍길동</p>
+                <p><strong>연령:</strong> 만 28세</p>
+                <div class="contact-info">
+                    <p><strong>이메일:</strong> user@example.com</p>
+                    <p><strong>연락처:</strong> 010-1234-5678</p>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- 경력 및 자격사항 -->
+        <fieldset id="exp-section">
+            <legend>경력 및 자격사항</legend>
+            <div class="item-row">
+                <details>
+                    <summary>
+                        <span>A사 시니어 개발자</span>
+                        <span>2022.01 - 현재</span>
+                    </summary>
+                    <div class="context">
+                        프로젝트 리딩 및 백엔드 아키텍처 설계 업무 수행
+                    </div>
+                </details>
+            </div>
+            <div class="item-row">
+                <details>
+                    <summary>
+                        <span>B사 주니어 개발자</span>
+                        <span>2020.03 - 2021.12</span>
+                    </summary>
+                    <div class="context">
+                        프론트엔드 UI/UX 개선 및 API 연동 담당
+                    </div>
+                </details>
+            </div>
+        </fieldset>
+
+        <!-- 프로젝트 -->
+        <fieldset id="proj-section">
+            <legend>프로젝트</legend>
+            <div class="item-row">
+                <details>
+                    <summary>
+                        <span>ERP 시스템 고도화</span>
+                        <span>2023.05 - 2023.11</span>
+                    </summary>
+                    <div class="context">
+                        레거시 코드 리팩토링 및 데이터베이스 최적화 (성능 20% 향상)
+                    </div>
+                </details>
+            </div>
+            <div class="item-row">
+                <details>
+                    <summary>
+                        <span>모바일 뱅킹 앱 런칭</span>
+                        <span>2022.06 - 2022.12</span>
+                    </summary>
+                    <div class="context">
+                        하이브리드 앱 개발 및 보안 모듈 적용
+                    </div>
+                </details>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="status-bar">
+        <p class="status-bar-field">준비 완료</p>
+        <p class="status-bar-field">CPU 점유율: 2%</p>
+        <p class="status-bar-field">100%</p>
+    </div>
+</div>
+
+<script>
+    const toggleBtn = document.getElementById('toggleAllBtn');
+    const allDetails = document.querySelectorAll('details');
+
+    toggleBtn.addEventListener('click', () => {
+        // 하나라도 닫혀있으면 전체 펼침, 모두 열려있으면 전체 접음
+        const isAnyClosed = Array.from(allDetails).some(detail => !detail.open);
+        
+        allDetails.forEach(detail => {
+            detail.open = isAnyClosed;
+        });
+    });
+</script>
+
+</body>
+</html>
